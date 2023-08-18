@@ -6,16 +6,20 @@ class Songs extends Component {
     super(props)
 
     this.songDuration = "-:--";
-    this.intervalId= null;
+    this.intervalId = null;
+    
+    // state for displaying time & scroll bar position
     this.state = {
       displayTime: "0:00",
       barVal: 0
     }
   }
 
+  // updating song status on rotation
   componentDidMount() {
     this.songStatus(this.props.currentSong);
   }
+
   componentDidUpdate(prevProps) {
     console.log(prevProps)
     if (prevProps.songIndex !== this.props.songIndex) {
@@ -23,13 +27,16 @@ class Songs extends Component {
       this.songStatus(currentSong);
     }
   }
+
   songStatus = (currentSong) => {
     this.songDuration = this.formatTime(myList.Songs[this.props.songIndex].duration);
-    // console.log("song", currentSong, currentSong.currentTime, this.songDuration);
+    
     this.setState({
       barVal: currentSong.currentTime,
       displayTime: this.formatTime(currentSong.currentTime)
     });
+
+  
     this.intervalId ? clearInterval(this.intervalId) : this.intervalId = null;
 
     this.intervalId = setInterval(() => {
@@ -47,6 +54,7 @@ class Songs extends Component {
 
   }
 
+  // creating time formats based on song duration
   formatTime = (t) => {
     let min = Math.floor(t / 60);
     if (min < 10) {
@@ -59,14 +67,16 @@ class Songs extends Component {
     return `${min} : ${second}`;
   }
 
+  // handling range input
   handleRange = (val) => {
     const { currentSong } = this.props;
     currentSong.currentTime = val;
     this.songStatus(currentSong);
   }
+
   render() {
     const song = myList.Songs[this.props.songIndex];
-    console.log("sng", song)
+    
     return (
       <div className='music'>
         <div className='musicBg' style={{ backgroundImage: `url(${song.icon})` }}></div>

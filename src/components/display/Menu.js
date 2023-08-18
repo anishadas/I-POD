@@ -1,9 +1,8 @@
 import React from 'react'
 import { myList } from '../List/List'
-function Menu({ selectedMenu, selectedOptn, singlePage }) {
+function Menu({ selectedMenu, selectedOptn }) {
   const menus = Object.values(myList)[selectedMenu];
-  console.log("menus", menus,selectedMenu,selectedOptn)
-  // const isSongMenu=menus==='son'
+  
   return (
       <div className='menu'>
         <header>{Object.keys(myList)[selectedMenu]}</header>

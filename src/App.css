@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
 
+/* common css */
 * {
   margin: 0;
   padding: 0;
@@ -28,6 +29,8 @@
   background-color: rgb(228, 226, 226);
   box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
+
+/* display section */
 
 .display {
   height: 55%;
@@ -123,6 +126,7 @@
   border-bottom: none;
 }
 
+/* button control section */
 .buttons {
   height: 45%;
   width: 100%;
@@ -219,14 +223,7 @@ button:hover {
 }
 
 
-/* cover flow */
-/* .Cover-Flow {
-  display: grid;
-  place-items: center;
-  border: 2px solid red;
-  margin-top: 20px;
-} */
-
+/* single page */
 .page {
   height: 91%;
   width: 100%;
@@ -235,30 +232,6 @@ button:hover {
   background-size: cover;
   background-repeat: no-repeat;
 }
-
-/* .Ludo {
-  background-image: url(https://images.unsplash.com/photo-1642056448324-922ff603e0c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.FIFA {
-  background-image: url(https://images.unsplash.com/photo-1617144519956-bba853571334?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=864&q=80);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.AngryBirds {
-  background-image: url(https://imgs.search.brave.com/9uyvwbPaneF0LIPoJ4Y4gWmw6B1lU9qk30jPT4UvmMM/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jZG4u/d2FsbHBhcGVyc2Fm/YXJpLmNvbS80MC81/MC9STTNpVjUuanBn);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.CandyCrush {
-  background-image: url(https://imgs.search.brave.com/nShctQ1V-CqtKgxXTg7CrNEvt9AGi2R0Lb-uL7Uzzxk/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJhY2Nlc3Mu/Y29tL2Z1bGwvMzky/NTI5Ny5qcGc);
-  background-size: cover;
-  background-repeat: no-repeat;
-} */
 
 .page-img {
   height: 90px;
@@ -281,6 +254,7 @@ p {
   text-shadow: 0 0 3px #FF0000;
   margin-top: 80px;
 }
+
 
 /* songs */
 .music {

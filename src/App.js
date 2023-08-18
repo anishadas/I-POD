@@ -8,10 +8,10 @@ class App extends Component {
   constructor(props) {
     super(props)
 
-    this.wheelRef = React.createRef();
-    this.distance = 0;
+    this.wheelRef = React.createRef(); //for adding ref to buttons controller
+    this.distance = 0;     //distance of rotations for selecting options
     this.sensitivity = 25;
-    this.songIndex = 0;
+    this.songIndex = 0;    
     this.state = {
       selectedMenu: 0,
       selectedOptn: 0,
@@ -20,6 +20,7 @@ class App extends Component {
       singlePage: false,
       currentSong: new Audio(myList.Songs[0].source)
     };
+    // functions for all button operations
     this.btnFunction = {
       handleOkBtn: this.handleOkBtn,
       backMenu: this.backMenu,
@@ -28,12 +29,15 @@ class App extends Component {
       backwardBtn: this.backwardBtn
     }
   }
+
+  // for rotation detection
   componentDidMount() {
     const wheel = this.wheelRef.current;
     this.zingTouch = new ZingTouch.Region(wheel);
     this.rotatingGesture();
   }
 
+  // handling rotations
   rotatingGesture = () => {
     const wheel = this.wheelRef.current;
     const gesture = new ZingTouch.Rotate();
@@ -46,14 +50,16 @@ class App extends Component {
       }
       if (Math.abs(this.distance - e.detail.distanceFromOrigin) > this.sensitivity) {
         const menuName = Object.keys(myList)[this.state.selectedMenu];
-        // console.log("name", menuName)
+        
         let newState;
         if (this.distance - e.detail.distanceFromOrigin < 0) {
           newState = (this.state.selectedOptn + 1) % menuArr.length;
         } else {
           newState = (this.state.selectedOptn - 1 + menuArr.length) % menuArr.length
         }
+        
         this.setState(prev => {
+          // To open sub-categrories of Songs
           if (menuName === "Songs") {
             this.songIndex = newState;
             return {
@@ -69,15 +75,13 @@ class App extends Component {
     })
   }
 
+  // handling ok button
   handleOkBtn = (option) => {
-
     let newMenuQueue = this.state.menuQueue;
-    // const len = newMenuQueue.length;
-
     const newSelectedMenu = Object.values(myList)[this.state.selectedMenu][option].id;
-    
     newMenuQueue.push(newSelectedMenu);
 
+    // to open single page categories like coverflow
     if (newSelectedMenu === this.state.selectedMenu) {
       this.setState({
         singlePage: true,
@@ -98,10 +102,12 @@ class App extends Component {
 
   }
 
+  // handling menu button
   backMenu = () => {
     
     let newMenuQueue = this.state.menuQueue;
 
+    // if the home page or song is playing
     if (newMenuQueue.length === 1 || !this.state.currentSong.paused) {
       alert(`sorry,no effect,${!this.state.currentSong.paused ? "Song is playing" : "you are on top"}`);
       return;
@@ -118,6 +124,7 @@ class App extends Component {
     })
   }
 
+  // handling play button
   playPause = () => {
     if (this.state.currentSong.paused) {
       this.state.currentSong.play();
@@ -126,6 +133,7 @@ class App extends Component {
     }
   }
 
+  // handling forward button
   forwardBtn = () => {
     this.state.currentSong.pause();
     this.songIndex = (++this.songIndex % myList.Songs.length);
@@ -137,6 +145,7 @@ class App extends Component {
     })
   }
 
+  // backward button
   backwardBtn = () => {
     this.state.currentSong.pause();
     this.songIndex = this.songIndex === 0 ? myList.Songs.length - 1 : --this.songIndex;
